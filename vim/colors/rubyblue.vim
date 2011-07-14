@@ -72,3 +72,5 @@ hi Folded		ctermbg=yellow		ctermfg=black
 hi FoldColumn	guibg=gray30		guifg=black
 hi FoldColumn	ctermbg=gray		ctermfg=black
 hi cIf0			guifg=gray			ctermfg=gray
+
+hi CursorLine   guibg=#1F3145

@@ -80,8 +80,8 @@ if has("autocmd")
 
   augroup END
 
-  autocmd BufWinLeave *.otl mkview
-  autocmd BufWinEnter *.otl silent loadview
+  "autocmd BufWinLeave *.otl mkview
+  "autocmd BufWinEnter *.otl silent loadview
   "autocmd BufWinLeave *.otl write
 
 else
@@ -138,7 +138,7 @@ set completeopt=menuone,menu,longest,preview
 let g:ragtag_global_maps = 1
 
 " Command-T
-nmap <silent> <Leader>T :CommandTFlush<CR>
+"nmap <silent> <Leader>T :CommandTFlush<CR>
 
 " Write before :make
 set autowrite
@@ -147,7 +147,7 @@ let g:bufExplorerFindActive = 1
 let g:bufExplorerShowRelativePath = 1
 
 let NERDTreeSortDirs = 1
-let NERDTreeIgnore = ['\~$','\.o$','\.elf$','\.class$','\.aux$','\.fls$','\.out$','\.\d*\(gf\|pk\)$','\.tfm$','\.tmproj$']
+let NERDTreeIgnore = ['\~$','\.o$','\.elf$','\.class$','\.aux$','\.fls$','\.out$','\.\d*\(gf\|pk\)$','\.tfm$','\.tmproj$','\.pyc$']
 
 let Tlist_Use_Right_Window=1
 " Remap some keys
@@ -246,7 +246,7 @@ autocmd BufRead *.plot set filetype=gnuplot
 autocmd BufRead *.m set filetype=octave
 
 " CuTest, not perfected, doesn't list test yet...
-set efm^=%n)\ Test%.%#:%f:%l:\ %m
+set efm^=%n)\ %s:%f:%l:%m
 
 " Terminal window title
 set title
