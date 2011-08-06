@@ -106,14 +106,6 @@ set tabstop=3
 set shiftwidth=3 " same
 set softtabstop=3 " same
 
-"set background=light
-" highlight LineNr        guifg=#DDEEFF ctermfg=DarkGrey
-" highlight VertSplit		ctermbg=Black ctermfg=White
-" highlight Folded			ctermbg=Black ctermfg=DarkGrey
-"call s:hibg("LineNr"    ,"#222222","DarkBlue",80)
-"colorscheme vividchalk
-"set enc=utf-8
-
 " MiniBufExplore
 " let g:miniBufExplMapWindowNavVim = 1 
 " let g:miniBufExplMapWindowNavArrows = 1 
@@ -203,11 +195,6 @@ set makeprg=scons
 "endfunction
 au BufNewFile,BufRead SCons* set filetype=scons
 
-" CMake
-au BufNewFile,BufRead *.cmake,CMakeLists.txt,*.cmake.in setf cmake
-au BufNewFile,BufRead *.ctest,*.ctest.in setf cmake
-au BufNewFile,BufRead *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake.vim
-
 " TeX
 au BufNewFile,BufRead *.tex,*.latex,*.ltx set efm=%E!\ LaTeX\ %trror:\ %m,
 	\%E!\ %m,
@@ -236,10 +223,6 @@ au BufNewFile,BufRead *.tex,*.latex,*.ltx set efm=%E!\ LaTeX\ %trror:\ %m,
 	\%+Q)%r,
 	\%+Q%*[^()])%r,
 	\%+Q[%\\d%*[^()])%r
-
-" Adding quickfixsupport for java
-autocmd BufRead *.java set makeprg=ant
-autocmd BufRead *.java set efm=%A\ %#[javac]\ %f:%l:\ %m,%-Z\ %#[javac]\ %p^,%-C%.%#
 
 autocmd BufRead *.gnuplot set filetype=gnuplot
 autocmd BufRead *.plot set filetype=gnuplot
