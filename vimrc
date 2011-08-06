@@ -84,6 +84,9 @@ if has("autocmd")
   "autocmd BufWinEnter *.otl silent loadview
   "autocmd BufWinLeave *.otl write
 
+  " Remove fugitive buffers when they're left
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+
 else
 
   set autoindent		" always set autoindenting on
