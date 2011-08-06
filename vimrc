@@ -300,3 +300,16 @@ iab <expr> xdts strftime("%Y-%m-%d %H.%M.%S")
 "set statusline=%<%.40f%m%r%h%w%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ %y[%{&makeprg}]\ (%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]
 set statusline=%<%.40f%m%r%h%w%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ %y\ (%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]
 set laststatus=2
+
+"set rulerformat=
+
+function TurnOnClutter()
+	set ruler
+	set laststatus=2
+endfunction
+function TurnOffClutter()
+	set noruler
+	set laststatus=1
+endfunction
+command ClutterOn call TurnOnClutter()
+command ClutterOff call TurnOffClutter()
