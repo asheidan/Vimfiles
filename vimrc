@@ -303,13 +303,32 @@ set laststatus=2
 
 "set rulerformat=
 
-function TurnOnClutter()
+function ClutterTurnOn()
 	set ruler
 	set laststatus=2
 endfunction
-function TurnOffClutter()
+function ClutterTurnOff()
 	set noruler
 	set laststatus=1
 endfunction
-command ClutterOn call TurnOnClutter()
-command ClutterOff call TurnOffClutter()
+command ClutterOn  call ClutterTurnOn()
+command ClutterOff call ClutterTurnOff()
+
+function BackupTurnOn()
+	set backup
+	set writebackup
+	set swapfile
+endfunction
+function BackupTurnOff()
+	set nobackup
+	set nowritebackup
+	set noswapfile
+endfunction
+command BackupOn  call BackupTurnOn()
+command BackupOff call BackupTurnOff()
+
+function Marked()
+	silent! !open -a Marked "%"
+	echo "Opened file i Marked.app"
+endfunction
+command Marked call Marked()
