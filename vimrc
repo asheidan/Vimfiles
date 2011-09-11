@@ -51,6 +51,8 @@ if &t_Co > 2 || has("gui_running")
   ""set hlsearch
 endif
 
+colorscheme mustang
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -68,7 +70,7 @@ if has("autocmd")
   au!
 
   " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  "autocmd FileType text setlocal textwidth=78
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -253,6 +255,9 @@ let mapleader = ","
 
 " Tab-complete menu
 set wildmenu
+
+" Remove the hated K-binding
+map K <nop>
 
 " Spelling
 if has("spell")
