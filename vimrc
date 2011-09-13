@@ -52,6 +52,8 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 colorscheme mustang
+hi User1 	guifg=#667a1f guibg=#444444 gui=italic ctermfg=253 ctermbg=238 cterm=italic
+hi User2 	guifg=#b1d631 guibg=#444444 gui=italic ctermfg=253 ctermbg=238 cterm=italic
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -107,9 +109,14 @@ set formatoptions+=l
 set lbr
 
 " Tab spacing.
-set tabstop=3 
-set shiftwidth=3 " same
-set softtabstop=3 " same
+function TabSize(size)
+	let &tabstop=a:size
+	let &shiftwidth=a:size
+	let &softtabstop=a:size
+endfunction
+command -nargs=1 TabSize call TabSize(<args>)
+
+TabSize 3
 
 " MiniBufExplore
 " let g:miniBufExplMapWindowNavVim = 1 
@@ -231,7 +238,7 @@ au BufNewFile,BufRead *.tex,*.latex,*.ltx set efm=%E!\ LaTeX\ %trror:\ %m,
 
 autocmd BufRead *.gnuplot set filetype=gnuplot
 autocmd BufRead *.plot set filetype=gnuplot
-autocmd BufRead *.m set filetype=octave
+"autocmd BufRead *.m set filetype=octave
 
 " CuTest, not perfected, doesn't list test yet...
 set efm^=%n)\ %s:%f:%l:%m
@@ -303,9 +310,36 @@ iab <expr> xdts strftime("%Y-%m-%d %H.%M.%S")
 "   %P percentage through buffer
 "   %) end of width specification
 "set statusline=%<%.40f%m%r%h%w%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ %y[%{&makeprg}]\ (%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]
-set statusline=%<%.40f%m%r%h%w%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ %y\ (%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]
+"set statusline=%1*
+"set statusline+=%<%.40f    " Filename
+"set statusline+=%0*
+"set statusline+=%m%r%h%w%q " Filestatus
+"set statusline+=%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ 
+"set statusline+=%y\      " Buffertype
+"set statusline+=(%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]
+
 set laststatus=2
 
+let g:AC_statusline='%2*'
+let g:AC_statusline.="%<%.40f"     " Filename
+let g:AC_statusline.='%0*'
+let g:AC_statusline.="%m%r%h%w%q" " Filestatus
+let g:AC_statusline.="%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ "
+let g:AC_statusline.="%y\ "     " Buffertype
+let g:AC_statusline.="(%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]"
+
+let g:NC_statusline='%1*'
+let g:NC_statusline.="%<%.40f"     " Filename
+let g:NC_statusline.='%0*'
+let g:NC_statusline.="%m%r%h%w%q" " Filestatus
+let g:NC_statusline.="%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ "
+let g:NC_statusline.="%y\ "     " Buffertype
+let g:NC_statusline.="(%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]"
+
+let &g:statusline=g:AC_statusline
+
+au WinEnter * let &l:statusline=g:AC_statusline
+au WinLeave * let &l:statusline=g:NC_statusline
 "set rulerformat=
 
 function ClutterTurnOn()
