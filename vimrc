@@ -52,8 +52,10 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 colorscheme mustang
-hi User1 	guifg=#667a1f guibg=#444444 gui=italic ctermfg=253 ctermbg=238 cterm=italic
-hi User2 	guifg=#b1d631 guibg=#444444 gui=italic ctermfg=253 ctermbg=238 cterm=italic
+" Statusbar filename
+hi User1 	guifg=#b1d631 guibg=#444444 gui=none ctermfg=253 ctermbg=238 cterm=none
+" Statusbar warning
+hi User2 	guifg=#ca1850 guibg=#444444 gui=none ctermfg=208 ctermbg=238 cterm=none
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -322,21 +324,35 @@ iab <expr> xdts strftime("%Y-%m-%d %H.%M.%S")
 
 set laststatus=2
 
-let g:AC_statusline='%2*'
-let g:AC_statusline.="%<%.40f"     " Filename
-let g:AC_statusline.='%0*'
-let g:AC_statusline.="%m%r%h%w%q" " Filestatus
-let g:AC_statusline.="%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ "
-let g:AC_statusline.="%y\ "     " Buffertype
-let g:AC_statusline.="(%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]"
+function s:create_statusbar(variable,insertcolors) "{{{
+	if a:insertcolors
+		let filenamecolor='%1*'
+		let warningcolor='%2*'
+		let restorecolor='%*'
+	else
+		let filenamecolor=''
+		let warningcolor=''
+		let restorecolor=''
+	endif
+	let {a:variable}=l:filenamecolor
+	let {a:variable}.="%<%.40f"     " Filename
+	let {a:variable}.=l:restorecolor
+	let {a:variable}.="%m%r%h%w" " Filestatus
+	if version >= 730
+		let {a:variable}.="%q"
+	endif
+	let {a:variable}.="%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ "
+	let {a:variable}.="%y"     " Buffertype
+	let {a:variable}.=l:warningcolor
+	let {a:variable}.="%{!&backup || !&writebackup?'~':''}"
+	let {a:variable}.="%{!&swapfile?'.swp':''}%*"
+	let {a:variable}.=l:restorecolor
+	let {a:variable}.="\ (%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ "
+	let {a:variable}.="%6.(%l%),%-5.(%c%V%)\ [%P]"  " Ruler
+endfunction "}}}
 
-let g:NC_statusline='%1*'
-let g:NC_statusline.="%<%.40f"     " Filename
-let g:NC_statusline.='%0*'
-let g:NC_statusline.="%m%r%h%w%q" " Filestatus
-let g:NC_statusline.="%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ "
-let g:NC_statusline.="%y\ "     " Buffertype
-let g:NC_statusline.="(%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]"
+call s:create_statusbar('g:AC_statusline',1)
+call s:create_statusbar('g:NC_statusline',0)
 
 let &g:statusline=g:AC_statusline
 
