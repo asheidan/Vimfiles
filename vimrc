@@ -91,6 +91,8 @@ if has("autocmd")
   " Remove fugitive buffers when they're left
   autocmd BufReadPost fugitive://* set bufhidden=delete
 
+  " Don't pollute the Dropbox
+  autocmd BufReadPre */Dropbox/* BackupOff
 else
 
   set autoindent		" always set autoindenting on
