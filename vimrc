@@ -143,12 +143,22 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
+" Fugitive (convenience bindings)
+nmap <silent> <leader>gs :Gstatus<CR>
+nmap <silent> <leader>gd :Gdiff<CR>
+
+" Gitv, the love child of fugitive
+let g:Gitv_OpenHorizontal = 'auto'
+
+nmap <silent> <leader>gv :Gitv<CR>
+nmap <silent> <leader>gV :Gitv --all<CR>
 
 " RagTag
 let g:ragtag_global_maps = 1
 
 " Command-T
 "nmap <silent> <Leader>T :CommandTFlush<CR>
+nmap <silent> <leader>t :noautocmd vimgrep /TODO/j **<CR>:cw<CR>
 
 " Write before :make
 set autowrite
