@@ -53,11 +53,11 @@ if &t_Co > 2 || has("gui_running")
   ""set hlsearch
 endif
 
-colorscheme mustang
+"colorscheme mustang
 " Statusbar filename
-hi User1 	guifg=#b1d631 guibg=#444444 gui=none ctermfg=253 ctermbg=238 cterm=none
+"hi User1 	guifg=#b1d631 guibg=#444444 gui=none ctermfg=253 ctermbg=238 cterm=none
 " Statusbar warning
-hi User2 	guifg=#ca1850 guibg=#444444 gui=none ctermfg=208 ctermbg=238 cterm=none
+"hi User2 	guifg=#ca1850 guibg=#444444 gui=none ctermfg=208 ctermbg=238 cterm=none
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -363,10 +363,10 @@ endfunction "}}}
 call s:create_statusbar('g:AC_statusline',1)
 call s:create_statusbar('g:NC_statusline',0)
 
-let &g:statusline=g:AC_statusline
+let &g:statusline=g:NC_statusline
 
-au WinEnter * let &l:statusline=g:AC_statusline
-au WinLeave * let &l:statusline=g:NC_statusline
+"au WinEnter * let &l:statusline=g:AC_statusline
+"au WinLeave * let &l:statusline=g:NC_statusline
 "set rulerformat=
 
 function ClutterTurnOn()
