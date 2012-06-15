@@ -34,6 +34,8 @@ set incsearch		" do incremental searching
 " Initialize pathogen (vim-bundles)
 call pathogen#runtime_append_all_bundles()
 
+let mapleader = ","
+
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
 
@@ -260,8 +262,6 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>
 
 " Background buffers
 set hidden
-
-let mapleader = ","
 
 " Tab-complete menu
 set wildmenu
