@@ -198,7 +198,6 @@ nmap <silent> <F5> :make<CR>
 set foldmethod=marker
 
 " Toggle Make and SCons
-set makeprg=scons
 "nmap <silent> t<F5> :call ToggleScons()<CR>
 "function ToggleScons()
 "	if &makeprg=='make'
