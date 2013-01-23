@@ -167,6 +167,11 @@ nmap <silent> <leader>t :noautocmd vimgrep /TODO/j **<CR>:cw<CR>
 " Write before :make
 set autowrite
 
+" LaTeX commands-surround
+let g:surround_{char2nr('c')} = "\\\1command\1{\r}"
+" Doxygen syntax in c-comments
+let g:load_doxygen_syntax = 1
+
 let g:bufExplorerFindActive = 1
 let g:bufExplorerShowRelativePath = 1
 
