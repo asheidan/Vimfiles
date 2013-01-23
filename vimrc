@@ -32,7 +32,7 @@ set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
 " Initialize pathogen (vim-bundles)
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 
 let mapleader = ","
 
