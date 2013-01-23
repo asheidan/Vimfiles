@@ -188,6 +188,14 @@ nmap <silent> <F3> :set nu!<CR>:echo "Line numbers: " . strpart("OffOn", 3* &nu,
 " Toggle highlight search term
 nmap <silent> <F4> :set hls!<CR>:echo "Search highlight: " . strpart("OffOn", 3* &hls,3)<CR>
 
+" Toggle Tlist
+"nmap <silent> <F8> :TlistToggle<CR>
+" Toggle Tagbar
+nmap <silent> <F8> :TagbarToggle<CR>
+
+" Toggle SrcExpl
+nmap <silent> <F9> :SrcExplToggle<CR>
+
 " Toggle show invisibles
 "nmap <silent> ti	:set list!<CR>:echo "Show invisibles: " . strpart("OffOn", 3* &list,3)<CR>
 
