@@ -153,6 +153,10 @@ let g:Gitv_OpenHorizontal = 'auto'
 nmap <silent> <leader>gv :Gitv<CR>
 nmap <silent> <leader>gV :Gitv --all<CR>
 
+" Vimoutliner
+let g:votl_modules_load = ''
+let g:vo_modules_load = ':clock'
+
 " RagTag
 let g:ragtag_global_maps = 1
 

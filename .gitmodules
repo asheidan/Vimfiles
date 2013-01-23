@@ -58,3 +58,6 @@
 [submodule "vim/bundle/largefile"]
 	path = vim/bundle/largefile
 	url = git://github.com/vim-scripts/LargeFile.git
+[submodule "vim/bundle/vimoutliner"]
+	path = vim/bundle/vimoutliner
+	url = git://github.com/majutsushi/tagbar.git
