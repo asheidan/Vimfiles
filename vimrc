@@ -31,10 +31,14 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
+let mapleader = ","
+
+" Ctrl-P
+nmap <silent> <leader>p :CtrlP
+nmap <silent> <leader>o :CtrlPTag
+
 " Initialize pathogen (vim-bundles)
 call pathogen#infect()
-
-let mapleader = ","
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
