@@ -58,3 +58,6 @@
 [submodule "vim/bundle/arduino-syntax"]
 	path = vim/bundle/arduino-syntax
 	url = git://github.com/vim-scripts/Arduino-syntax-file.git
+[submodule "vim/bundle/fish-syntax"]
+	path = vim/bundle/fish-syntax
+	url = git://github.com/vim-scripts/fish.vim.git
