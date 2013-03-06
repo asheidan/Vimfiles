@@ -172,7 +172,7 @@ nmap <C-j> <C-]>
 nmap <C-k> <C-t>
 
 " map <F2> to toggle NERDTree window
-nmap <silent> <S-F2> :NERDTree<CR>
+nmap <silent> <S-F2> :NERDTreeFind<CR>
 nmap <silent> <F2> :NERDTreeToggle<CR>
 
 " Toggle linenumbers
