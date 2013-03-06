@@ -19,9 +19,6 @@
 [submodule "vim/bundle/repeat"]
 	path = vim/bundle/repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/omnicppcomplete"]
-	path = vim/bundle/omnicppcomplete
-	url = https://github.com/vim-scripts/OmniCppComplete.git
 [submodule "vim/bundle/ragtag"]
 	path = vim/bundle/ragtag
 	url = http://github.com/tpope/vim-ragtag.git
