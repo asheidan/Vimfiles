@@ -73,4 +73,6 @@ hi FoldColumn	guibg=gray30		guifg=black
 hi FoldColumn	ctermbg=gray		ctermfg=black
 hi cIf0			guifg=gray			ctermfg=gray
 
+" Local modifications
 hi CursorLine   guibg=#1F3145
+hi Folded		guibg=darkGreen		guifg=black
