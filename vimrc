@@ -308,6 +308,9 @@ iab <expr> xds strftime("%Y-%m-%d")
 iab <expr> xts strftime("%H.%M.%s")
 iab <expr> xdts strftime("%Y-%m-%d %H.%M.%S")
 
+" Stronger encryption
+set cryptmethod=blowfish
+
 " Format statusbar
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 " format markers:
