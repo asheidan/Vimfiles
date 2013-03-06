@@ -131,6 +131,9 @@ TabSize 3
 " let g:miniBufExplMapCTabSwitchBufs = 1 
 " let g:miniBufExplModSelTarget = 1 
 
+" Saner handling of large files (via LargeFiles).
+" Files larger than 10MB are large
+let g:LargeFile = 10
 
 " Fugitive (convenience bindings)
 nmap <silent> <leader>gs :Gstatus<CR>
