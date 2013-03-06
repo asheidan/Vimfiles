@@ -115,6 +115,7 @@ set formatoptions+=l
 set lbr
 
 " Tab spacing.
+set shiftround
 function TabSize(size)
 	let &tabstop=a:size
 	let &shiftwidth=a:size
