@@ -55,3 +55,6 @@
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar.git
+[submodule "vim/bundle/arduino-syntax"]
+	path = vim/bundle/arduino-syntax
+	url = git://github.com/vim-scripts/Arduino-syntax-file.git
