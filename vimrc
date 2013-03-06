@@ -167,7 +167,6 @@ let g:bufExplorerShowRelativePath = 1
 let NERDTreeSortDirs = 1
 let NERDTreeIgnore = ['\~$','\.o$','\.elf$','\.class$','\.aux$','\.fls$','\.out$','\.\d*\(gf\|pk\)$','\.tfm$','\.tmproj$','\.pyc$']
 
-let Tlist_Use_Right_Window=1
 " Remap some keys
 nmap <C-j> <C-]>
 nmap <C-k> <C-t>
