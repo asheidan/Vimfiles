@@ -67,3 +67,6 @@
 [submodule "vim/bundle/vividchalk"]
 	path = vim/bundle/vividchalk
 	url = git://github.com/tpope/vim-vividchalk.git
+[submodule "vim/bundle/indent-guides"]
+	path = vim/bundle/indent-guides
+	url = git://github.com/nathanaelkane/vim-indent-guides.git
