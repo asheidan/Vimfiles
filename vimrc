@@ -31,10 +31,14 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
+let mapleader = ","
+
+" Ctrl-P
+nmap <silent> <leader>p :CtrlP
+nmap <silent> <leader>o :CtrlPTag
+
 " Initialize pathogen (vim-bundles)
 call pathogen#infect()
-
-let mapleader = ","
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -115,6 +119,7 @@ set formatoptions+=l
 set lbr
 
 " Tab spacing.
+set shiftround
 function TabSize(size)
 	let &tabstop=a:size
 	let &shiftwidth=a:size
@@ -130,18 +135,9 @@ TabSize 3
 " let g:miniBufExplMapCTabSwitchBufs = 1 
 " let g:miniBufExplModSelTarget = 1 
 
-" OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
+" Saner handling of large files (via LargeFiles).
+" Files larger than 10MB are large
+let g:LargeFile = 10
 
 " Fugitive (convenience bindings)
 nmap <silent> <leader>gs :Gstatus<CR>
@@ -178,13 +174,12 @@ let g:bufExplorerShowRelativePath = 1
 let NERDTreeSortDirs = 1
 let NERDTreeIgnore = ['\~$','\.o$','\.elf$','\.class$','\.aux$','\.fls$','\.out$','\.\d*\(gf\|pk\)$','\.tfm$','\.tmproj$','\.pyc$']
 
-let Tlist_Use_Right_Window=1
 " Remap some keys
 nmap <C-j> <C-]>
 nmap <C-k> <C-t>
 
 " map <F2> to toggle NERDTree window
-nmap <silent> <S-F2> :NERDTree<CR>
+nmap <silent> <S-F2> :NERDTreeFind<CR>
 nmap <silent> <F2> :NERDTreeToggle<CR>
 
 " Toggle linenumbers
@@ -319,6 +314,9 @@ endfunction
 iab <expr> xds strftime("%Y-%m-%d")
 iab <expr> xts strftime("%H.%M.%s")
 iab <expr> xdts strftime("%Y-%m-%d %H.%M.%S")
+
+" Stronger encryption
+set cryptmethod=blowfish
 
 " Format statusbar
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P

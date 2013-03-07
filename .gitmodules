@@ -13,21 +13,12 @@
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = http://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/snipmate"]
-	path = vim/bundle/snipmate
-	url = https://github.com/msanders/snipmate.vim.git
 [submodule "vim/bundle/repeat"]
 	path = vim/bundle/repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/omnicppcomplete"]
-	path = vim/bundle/omnicppcomplete
-	url = https://github.com/vim-scripts/OmniCppComplete.git
 [submodule "vim/bundle/ragtag"]
 	path = vim/bundle/ragtag
 	url = http://github.com/tpope/vim-ragtag.git
-[submodule "vim/bundle/taglist"]
-	path = vim/bundle/taglist
-	url = https://github.com/vim-scripts/taglist.vim.git
 [submodule "vim/bundle/cocoa"]
 	path = vim/bundle/cocoa
 	url = https://github.com/vim-scripts/cocoa.vim.git
@@ -70,3 +61,12 @@
 [submodule "vim/bundle/indent-guides"]
 	path = vim/bundle/indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
+[submodule "vim/bundle/arduino-syntax"]
+	path = vim/bundle/arduino-syntax
+	url = git://github.com/vim-scripts/Arduino-syntax-file.git
+[submodule "vim/bundle/fish-syntax"]
+	path = vim/bundle/fish-syntax
+	url = git://github.com/vim-scripts/fish.vim.git
+[submodule "vim/bundle/ctrlp"]
+	path = vim/bundle/ctrlp
+	url = git://github.com/kien/ctrlp.vim.git
