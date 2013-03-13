@@ -75,4 +75,6 @@ hi cIf0			guifg=gray			ctermfg=gray
 
 " Local modifications
 hi CursorLine   guibg=#1F3145
-hi Folded		guibg=darkGreen		guifg=black
+hi Folded		guibg=#121D29		guifg=#306299
+hi operator		guifg=yellow        gui=none              ctermfg=yellow
+hi title		guifg=white         gui=none              cterm=bold
