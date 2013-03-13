@@ -31,11 +31,14 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
-let mapleader = ","
+" Fix for using fish-beta as shell
+set shell=/bin/bash
 
-" Ctrl-P
-nmap <silent> <leader>p :CtrlP
-nmap <silent> <leader>o :CtrlPTag
+let mapleader = ","
+let maplocalleader = ";"
+
+" Makes plugins look smoother
+set lazyredraw
 
 " Initialize pathogen (vim-bundles)
 call pathogen#infect()
@@ -157,11 +160,33 @@ let g:vo_modules_load = ':clock'
 let g:ragtag_global_maps = 1
 
 " Command-T
-"nmap <silent> <Leader>T :CommandTFlush<CR>
+"nmap <silent> <Leader>P :CommandTFlush<CR>
+"nmap <silent> <Leader>p :CommandT<CR>
+
+" Ctrl-P
+"unlet g:ctrlp_custom_ignore
+set wildignore+=*~
+let g:ctrlp_custom_ignore = {
+	\ 'file': '\v\.(o|pyc)$',
+	\ 'dir': 'virtualenv\|\.(git\|svn\|hg)$',
+	\ }
+let g:ctrlp_reuse_window = 'BufEx'
+" Dumb workdir
+let g:ctrlp_working_path_mode = 0
+nmap <silent> <Leader>p :CtrlP<CR>
+nmap <silent> <Leader>P :CtrlPBuffer<CR>
+nmap <silent> <Leader>o :CtrlPTag<CR>
+
+" NarrowRegion
+let g:nrrw_rgn_protect = 'n'
+
 nmap <silent> <leader>t :noautocmd vimgrep /TODO/j **<CR>:cw<CR>
 
 " Write before :make
 set autowrite
+
+" Org-Mode
+let g:org_heading_shade_leading_stars = 0
 
 " LaTeX commands-surround
 let g:surround_{char2nr('c')} = "\\\1command\1{\r}"
@@ -176,6 +201,7 @@ let NERDTreeIgnore = ['\~$','\.o$','\.elf$','\.class$','\.aux$','\.fls$','\.out$
 
 " Remap some keys
 nmap <C-j> <C-]>
+nmap g<C-j> g]
 nmap <C-k> <C-t>
 
 " map <F2> to toggle NERDTree window
@@ -215,7 +241,7 @@ function ToggleFoldColumn()
 	echo "Show folds: " . strpart("OffOn", 3* &foldcolumn,3)
 endfunction
 
-nmap <silent> <F5> :make<CR>
+nmap <silent> <F5> :make<CR><CR>
 
 " let VCSCommandGitExec = '/opt/local/bin/git'
 
