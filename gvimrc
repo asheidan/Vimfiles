@@ -1,6 +1,20 @@
 "set noanti
 "set nomacatsui
-set guioptions=aegiMt
+
+"set guioptions=aegiMt
+" No more GtkTabs!!!!
+set guioptions-=e
+" No menu
+set guioptions-=m
+" No toolbar
+set guioptions-=T
+" No scrollbars
+set guioptions-=L
+set guioptions-=l
+set guioptions-=R
+set guioptions-=r
+set guioptions-=b
+set guioptions-=h
 "set gfn=Bitstream\ Vera\ Sans\ Mono\ 8
 set gfn=Monaco:h9
 
