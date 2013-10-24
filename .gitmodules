@@ -3,49 +3,49 @@
 	url = git://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
-	url = http://github.com/scrooloose/nerdcommenter.git
+	url = git://github.com/scrooloose/nerdcommenter.git
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
-	url = http://github.com/scrooloose/nerdtree.git
+	url = git://github.com/scrooloose/nerdtree.git
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
-	url = http://github.com/tpope/vim-surround.git
+	url = git://github.com/tpope/vim-surround.git
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
-	url = http://github.com/tpope/vim-fugitive.git
+	url = git@github.com:tpope/vim-fugitive.git
 [submodule "vim/bundle/repeat"]
 	path = vim/bundle/repeat
-	url = https://github.com/tpope/vim-repeat.git
+	url = git://github.com/tpope/vim-repeat.git
 [submodule "vim/bundle/ragtag"]
 	path = vim/bundle/ragtag
-	url = http://github.com/tpope/vim-ragtag.git
+	url = git://github.com/tpope/vim-ragtag.git
 [submodule "vim/bundle/cocoa"]
 	path = vim/bundle/cocoa
-	url = https://github.com/vim-scripts/cocoa.vim.git
+	url = git://github.com/vim-scripts/cocoa.vim.git
 [submodule "vim/bundle/bufexplorer"]
 	path = vim/bundle/bufexplorer
-	url = https://github.com/vim-scripts/bufexplorer.zip.git
+	url = git://github.com/vim-scripts/bufexplorer.zip.git
 [submodule "vim/bundle/a"]
 	path = vim/bundle/a
-	url = https://github.com/vim-scripts/a.vim.git
+	url = git://github.com/vim-scripts/a.vim.git
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/scss-syntax"]
 	path = vim/bundle/scss-syntax
-	url = https://github.com/cakebaker/scss-syntax.vim.git
+	url = git://github.com/cakebaker/scss-syntax.vim.git
 [submodule "vim/bundle/extradite"]
 	path = vim/bundle/extradite
-	url = https://github.com/int3/vim-extradite.git
+	url = git://github.com/int3/vim-extradite.git
 [submodule "vim/bundle/unimpaired"]
 	path = vim/bundle/unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
+	url = git://github.com/tpope/vim-unimpaired.git
 [submodule "vim/bundle/detectindent"]
 	path = vim/bundle/detectindent
 	url = git://github.com/ciaranm/detectindent.git
 [submodule "vim/bundle/gitv"]
 	path = vim/bundle/gitv
-	url = https://github.com/gregsexton/gitv.git
+	url = git://github.com/gregsexton/gitv.git
 [submodule "vim/bundle/largefile"]
 	path = vim/bundle/largefile
 	url = git://github.com/vim-scripts/LargeFile.git
