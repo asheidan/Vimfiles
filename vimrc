@@ -69,41 +69,80 @@ endif
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
-  " Enable file type detection.
-  filetype plugin on
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+	" Enable file type detection.
+	filetype plugin on
+	" Use the default filetype settings, so that mail gets 'tw' set to 72,
+	" 'cindent' is on in C files, etc.
+	" Also load indent files, to automatically do language-dependent indenting.
+	filetype plugin indent on
 
-  " Enable OmniCompletion
-  set omnifunc=syntaxcomplete#Complete
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+	" Enable OmniCompletion
+	set omnifunc=syntaxcomplete#Complete
+	" Put these in an autocmd group, so that we can delete them easily.
+	augroup vimrcEx
+	au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  "autocmd FileType text setlocal textwidth=78
+	" For all text files set 'textwidth' to 78 characters.
+	"autocmd FileType text setlocal textwidth=78
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+	" When editing a file, always jump to the last known cursor position.
+	" Don't do it when the position is invalid or when inside an event handler
+	" (happens when dropping a file on gvim).
+	autocmd BufReadPost *
+	 \ if line("'\"") > 0 && line("'\"") <= line("$") |
+	 \   exe "normal g`\"" |
+	 \ endif
 
-  augroup END
+	augroup END
 
-  "autocmd BufWinLeave *.otl mkview
-  "autocmd BufWinEnter *.otl silent loadview
-  "autocmd BufWinLeave *.otl write
+	"autocmd BufWinLeave *.otl mkview
+	"autocmd BufWinEnter *.otl silent loadview
+	"autocmd BufWinLeave *.otl write
+	
+	" associate *.pyc_dis with python filetype
+	au BufRead,BufNewFile *.pyc_dis set filetype=python
 
-  " Remove fugitive buffers when they're left
-  autocmd BufReadPost fugitive://* set bufhidden=delete
+	" Remove fugitive buffers when they're left
+	autocmd BufReadPost fugitive://* set bufhidden=delete
 
-  " Don't pollute the Dropbox
-  autocmd BufReadPre */Dropbox/* BackupOff
+	" Don't pollute the Dropbox
+	autocmd BufReadPre */Dropbox/* BackupOff
+
+	au BufNewFile,BufRead SCons* set filetype=scons
+
+	" TeX
+	au BufNewFile,BufRead *.tex,*.latex,*.ltx set efm=%E!\ LaTeX\ %trror:\ %m,
+		\%E!\ %m,
+		\%+WLaTeX\ %.%#Warning:\ %.%#line\ %l%.%#,
+		\%+W%.%#\ at\ lines\ %l--%*\\d,
+		\%WLaTeX\ %.%#Warning:\ %m,
+		\%Cl.%l\ %m,
+		\%+C\ \ %m.,
+		\%+C%.%#-%.%#,
+		\%+C%.%#[]%.%#,
+		\%+C[]%.%#,
+		\%+C%.%#%[{}\\]%.%#,
+		\%+C<%.%#>%.%#,
+		\%C\ \ %m,
+		\%-GSee\ the\ LaTeX%m,
+		\%-GType\ \ H\ <return>%m,
+		\%-G\ ...%.%#,
+		\%-G%.%#\ (C)\ %.%#,
+		\%-G(see\ the\ transcript%.%#),
+		\%-G\\s%#,
+		\%+O(%f)%r,
+		\%+P(%f%r,
+		\%+P\ %\\=(%f%r,
+		\%+P%*[^()](%f%r,
+		\%+P[%\\d%[^()]%#(%f%r,
+		\%+Q)%r,
+		\%+Q%*[^()])%r,
+		\%+Q[%\\d%*[^()])%r
+
+	autocmd BufRead *.gnuplot set filetype=gnuplot
+	autocmd BufRead *.plot set filetype=gnuplot
+	"autocmd BufRead *.m set filetype=octave
+	
 else
 
   set autoindent		" always set autoindenting on
@@ -166,6 +205,7 @@ let g:ragtag_global_maps = 1
 " Ctrl-P
 "unlet g:ctrlp_custom_ignore
 set wildignore+=*~
+let g:ctrlp_arg_map = 1
 let g:ctrlp_custom_ignore = {
 	\ 'file': '\v\.(o|pyc)$',
 	\ 'dir': 'virtualenv\|\.(git\|svn\|hg)$',
@@ -196,8 +236,11 @@ let g:load_doxygen_syntax = 1
 let g:bufExplorerFindActive = 1
 let g:bufExplorerShowRelativePath = 1
 
+let NERDChristmasTree = 1
 let NERDTreeSortDirs = 1
-let NERDTreeIgnore = ['\~$','\.o$','\.elf$','\.class$','\.aux$','\.fls$','\.out$','\.\d*\(gf\|pk\)$','\.tfm$','\.tmproj$','\.pyc$']
+let NERDTreeIgnore = ['\~$','\.o$','\.elf$','\.class$','\.aux$','\.fls$','\.out$','\.\d*\(gf\|pk\)$','\.tfm$','\.tmproj$','\.pyc$','^__pycache__$']
+
+let Tlist_Use_Right_Window=1
 
 " Remap some keys
 nmap <C-j> <C-]>
@@ -213,6 +256,9 @@ nmap <silent> <F3> :set nu!<CR>:echo "Line numbers: " . strpart("OffOn", 3* &nu,
 
 " Toggle highlight search term
 nmap <silent> <F4> :set hls!<CR>:echo "Search highlight: " . strpart("OffOn", 3* &hls,3)<CR>
+
+" Toggle Gundo
+nmap <silent> <F7> :GundoToggle<CR>
 
 " Toggle Tlist
 "nmap <silent> <F8> :TlistToggle<CR>
@@ -241,7 +287,13 @@ function ToggleFoldColumn()
 	echo "Show folds: " . strpart("OffOn", 3* &foldcolumn,3)
 endfunction
 
-nmap <silent> <F5> :make<CR><CR>
+"nmap <silent> <F5> :make
+function MakeCommand(command)
+	nmap <silent> <F5> a:command<CR><CR>
+endfunction
+command -nargs=1 MakeCommand call MakeCommand(<args>)
+nmap <silent> <F5> :!tmux send-keys -t tests "failsucc.sh django-admin.py test articles" Enter<CR><CR>
+nmap <silent> <S-F5> :!tmux send-keys -t tests "failsucc.sh django-admin.py test" Enter<CR><CR>
 
 " let VCSCommandGitExec = '/opt/local/bin/git'
 
@@ -258,40 +310,6 @@ set foldmethod=marker
 "		echo "Make set as builder"
 "	endif
 "endfunction
-au BufNewFile,BufRead SCons* set filetype=scons
-
-" TeX
-au BufNewFile,BufRead *.tex,*.latex,*.ltx set efm=%E!\ LaTeX\ %trror:\ %m,
-	\%E!\ %m,
-	\%+WLaTeX\ %.%#Warning:\ %.%#line\ %l%.%#,
-	\%+W%.%#\ at\ lines\ %l--%*\\d,
-	\%WLaTeX\ %.%#Warning:\ %m,
-	\%Cl.%l\ %m,
-	\%+C\ \ %m.,
-	\%+C%.%#-%.%#,
-	\%+C%.%#[]%.%#,
-	\%+C[]%.%#,
-	\%+C%.%#%[{}\\]%.%#,
-	\%+C<%.%#>%.%#,
-	\%C\ \ %m,
-	\%-GSee\ the\ LaTeX%m,
-	\%-GType\ \ H\ <return>%m,
-	\%-G\ ...%.%#,
-	\%-G%.%#\ (C)\ %.%#,
-	\%-G(see\ the\ transcript%.%#),
-	\%-G\\s%#,
-	\%+O(%f)%r,
-	\%+P(%f%r,
-	\%+P\ %\\=(%f%r,
-	\%+P%*[^()](%f%r,
-	\%+P[%\\d%[^()]%#(%f%r,
-	\%+Q)%r,
-	\%+Q%*[^()])%r,
-	\%+Q[%\\d%*[^()])%r
-
-autocmd BufRead *.gnuplot set filetype=gnuplot
-autocmd BufRead *.plot set filetype=gnuplot
-"autocmd BufRead *.m set filetype=octave
 
 " CuTest, not perfected, doesn't list test yet...
 set efm^=%n)\ %s:%f:%l:%m
@@ -401,10 +419,10 @@ function s:create_statusbar(variable,insertcolors) "{{{
 	let {a:variable}.="%6.(%l%),%-5.(%c%V%)\ [%P]"  " Ruler
 endfunction "}}}
 
-call s:create_statusbar('g:AC_statusline',1)
-call s:create_statusbar('g:NC_statusline',0)
-
-let &g:statusline=g:NC_statusline
+"call s:create_statusbar('g:AC_statusline',1)
+"call s:create_statusbar('g:NC_statusline',0)
+"
+"let &g:statusline=g:NC_statusline
 
 "au WinEnter * let &l:statusline=g:AC_statusline
 "au WinLeave * let &l:statusline=g:NC_statusline
