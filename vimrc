@@ -397,71 +397,8 @@ cab <expr> xdts strftime("%Y%m%d%H%M%S")
 " Stronger encryption
 set cryptmethod=blowfish
 
-" Format statusbar
-" cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-" format markers:
-"   %< truncation point
-"   %n buffer number
-"   %f relative path to file
-"   %t file name
-"   %m modified flag [+] (modified), [-] (unmodifiable) or nothing
-"   %r readonly flag [RO]
-"   %y filetype [ruby]
-"   %= split point for left and right justification
-"   %-35. width specification
-"   %l current line number
-"   %L number of lines in buffer
-"   %c current column number
-"   %V current virtual column number (-n), if different from %c
-"   %v ?
-"   %P percentage through buffer
-"   %) end of width specification
-"set statusline=%<%.40f%m%r%h%w%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ %y[%{&makeprg}]\ (%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]
-"set statusline=%1*
-"set statusline+=%<%.40f    " Filename
-"set statusline+=%0*
-"set statusline+=%m%r%h%w%q " Filestatus
-"set statusline+=%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ 
-"set statusline+=%y\      " Buffertype
-"set statusline+=(%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ %6.(%l%),%-5.(%c%V%)\ [%P]
-
 set laststatus=2
 
-function! s:create_statusbar(variable,insertcolors) "{{{
-	if a:insertcolors
-		let filenamecolor='%1*'
-		let warningcolor='%2*'
-		let restorecolor='%*'
-	else
-		let filenamecolor=''
-		let warningcolor=''
-		let restorecolor=''
-	endif
-	let {a:variable}=l:filenamecolor
-	let {a:variable}.="%<%.40f"     " Filename
-	let {a:variable}.=l:restorecolor
-	let {a:variable}.="%m%r%h%w" " Filestatus
-	if version >= 730
-		let {a:variable}.="%q"
-	endif
-	let {a:variable}.="%=\ %((%{Spellang()})%)%(\ %{fugitive#statusline()}%)\ "
-	let {a:variable}.="%y"     " Buffertype
-	let {a:variable}.=l:warningcolor
-	let {a:variable}.="%{!&backup || !&writebackup?'~':''}"
-	let {a:variable}.="%{!&swapfile?'.swp':''}%*"
-	let {a:variable}.=l:restorecolor
-	let {a:variable}.="\ (%(%{&fileencoding},%)%{&ff},%{&ts},%{&fo},%{&textwidth})\ "
-	let {a:variable}.="%6.(%l%),%-5.(%c%V%)\ [%P]"  " Ruler
-endfunction "}}}
-
-"call s:create_statusbar('g:AC_statusline',1)
-"call s:create_statusbar('g:NC_statusline',0)
-"
-"let &g:statusline=g:NC_statusline
-
-"au WinEnter * let &l:statusline=g:AC_statusline
-"au WinLeave * let &l:statusline=g:NC_statusline
-"set rulerformat=
 
 function! ClutterTurnOn()
 	set ruler
