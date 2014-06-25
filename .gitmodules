@@ -22,9 +22,6 @@
 [submodule "vim/bundle/cocoa"]
 	path = vim/bundle/cocoa
 	url = git://github.com/vim-scripts/cocoa.vim.git
-[submodule "vim/bundle/bufexplorer"]
-	path = vim/bundle/bufexplorer
-	url = git://github.com/vim-scripts/bufexplorer.zip.git
 [submodule "vim/bundle/a"]
 	path = vim/bundle/a
 	url = git://github.com/vim-scripts/a.vim.git
