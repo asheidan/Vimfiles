@@ -76,73 +76,85 @@ if has("autocmd")
 	" Also load indent files, to automatically do language-dependent indenting.
 	filetype plugin indent on
 
+	" Reload vimrc when changed
+	augroup reload_vimrc " {{{
+		autocmd!
+		autocmd BufWritePost $MYVIMRC,$MYGVIMRC source <amatch>
+	augroup END " }}}
+
 	" Enable OmniCompletion
 	set omnifunc=syntaxcomplete#Complete
 	" Put these in an autocmd group, so that we can delete them easily.
-	augroup vimrcEx
-	au!
+	augroup vimrcEx " {{{
+		autocmd!
 
-	" For all text files set 'textwidth' to 78 characters.
-	"autocmd FileType text setlocal textwidth=78
+		" For all text files set 'textwidth' to 78 characters.
+		"autocmd FileType text setlocal textwidth=78
 
-	" When editing a file, always jump to the last known cursor position.
-	" Don't do it when the position is invalid or when inside an event handler
-	" (happens when dropping a file on gvim).
-	autocmd BufReadPost *
-	 \ if line("'\"") > 0 && line("'\"") <= line("$") |
-	 \   exe "normal g`\"" |
-	 \ endif
+		" When editing a file, always jump to the last known cursor position.
+		" Don't do it when the position is invalid or when inside an event handler
+		" (happens when dropping a file on gvim).
+		autocmd BufReadPost *
+		\ if line("'\"") > 0 && line("'\"") <= line("$") |
+		\   exe "normal g`\"" |
+		\ endif
 
-	augroup END
+	augroup END " }}}
 
 	"autocmd BufWinLeave *.otl mkview
 	"autocmd BufWinEnter *.otl silent loadview
 	"autocmd BufWinLeave *.otl write
 	
-	" associate *.pyc_dis with python filetype
-	au BufRead,BufNewFile *.pyc_dis set filetype=python
+	augroup file_associations " {{{
+		autocmd!
 
-	" Remove fugitive buffers when they're left
-	autocmd BufReadPost fugitive://* set bufhidden=delete
+		" associate *.pyc_dis with python filetype
+		au BufRead,BufNewFile *.pyc_dis set filetype=python
 
-	" Don't pollute the Dropbox
-	autocmd BufReadPre */Dropbox/* BackupOff
+		" Remove fugitive buffers when they're left
+		autocmd BufReadPost fugitive://* set bufhidden=delete
 
-	au BufNewFile,BufRead SCons* set filetype=scons
+		" Don't pollute the Dropbox
+		autocmd BufReadPre */Dropbox/* BackupOff
 
-	" TeX
-	au BufNewFile,BufRead *.tex,*.latex,*.ltx set efm=%E!\ LaTeX\ %trror:\ %m,
-		\%E!\ %m,
-		\%+WLaTeX\ %.%#Warning:\ %.%#line\ %l%.%#,
-		\%+W%.%#\ at\ lines\ %l--%*\\d,
-		\%WLaTeX\ %.%#Warning:\ %m,
-		\%Cl.%l\ %m,
-		\%+C\ \ %m.,
-		\%+C%.%#-%.%#,
-		\%+C%.%#[]%.%#,
-		\%+C[]%.%#,
-		\%+C%.%#%[{}\\]%.%#,
-		\%+C<%.%#>%.%#,
-		\%C\ \ %m,
-		\%-GSee\ the\ LaTeX%m,
-		\%-GType\ \ H\ <return>%m,
-		\%-G\ ...%.%#,
-		\%-G%.%#\ (C)\ %.%#,
-		\%-G(see\ the\ transcript%.%#),
-		\%-G\\s%#,
-		\%+O(%f)%r,
-		\%+P(%f%r,
-		\%+P\ %\\=(%f%r,
-		\%+P%*[^()](%f%r,
-		\%+P[%\\d%[^()]%#(%f%r,
-		\%+Q)%r,
-		\%+Q%*[^()])%r,
-		\%+Q[%\\d%*[^()])%r
+		au BufNewFile,BufRead SCons* set filetype=scons
 
-	autocmd BufRead *.gnuplot set filetype=gnuplot
-	autocmd BufRead *.plot set filetype=gnuplot
-	"autocmd BufRead *.m set filetype=octave
+		autocmd BufRead *.gnuplot set filetype=gnuplot
+		autocmd BufRead *.plot set filetype=gnuplot
+		"autocmd BufRead *.m set filetype=octave
+		
+		autocmd FileType html,htmldjango,css,js,xml runtime! macros/matchit.vim
+	augroup END " }}}
 	
+	" TeX
+	"au BufNewFile,BufRead *.tex,*.latex,*.ltx set efm=%E!\ LaTeX\ %trror:\ %m,
+	"	\%E!\ %m,
+	"	\%+WLaTeX\ %.%#Warning:\ %.%#line\ %l%.%#,
+	"	\%+W%.%#\ at\ lines\ %l--%*\\d,
+	"	\%WLaTeX\ %.%#Warning:\ %m,
+	"	\%Cl.%l\ %m,
+	"	\%+C\ \ %m.,
+	"	\%+C%.%#-%.%#,
+	"	\%+C%.%#[]%.%#,
+	"	\%+C[]%.%#,
+	"	\%+C%.%#%[{}\\]%.%#,
+	"	\%+C<%.%#>%.%#,
+	"	\%C\ \ %m,
+	"	\%-GSee\ the\ LaTeX%m,
+	"	\%-GType\ \ H\ <return>%m,
+	"	\%-G\ ...%.%#,
+	"	\%-G%.%#\ (C)\ %.%#,
+	"	\%-G(see\ the\ transcript%.%#),
+	"	\%-G\\s%#,
+	"	\%+O(%f)%r,
+	"	\%+P(%f%r,
+	"	\%+P\ %\\=(%f%r,
+	"	\%+P%*[^()](%f%r,
+	"	\%+P[%\\d%[^()]%#(%f%r,
+	"	\%+Q)%r,
+	"	\%+Q%*[^()])%r,
+	"	\%+Q[%\\d%*[^()])%r
+
 else
 
   set autoindent		" always set autoindenting on
@@ -154,7 +166,7 @@ endif " has("autocmd")
 "set noexpandtabs
 
 " Smart indenting, based on the typed code.
-set smartindent 
+set smartindent
 
 " Soft word wrap
 set formatoptions+=l
@@ -162,20 +174,20 @@ set lbr
 
 " Tab spacing.
 set shiftround
-function TabSize(size)
+function! TabSize(size)
 	let &tabstop=a:size
 	let &shiftwidth=a:size
 	let &softtabstop=a:size
 endfunction
-command -nargs=1 TabSize call TabSize(<args>)
+command! -nargs=1 TabSize call TabSize(<args>)
 
 TabSize 3
 
 " MiniBufExplore
-" let g:miniBufExplMapWindowNavVim = 1 
-" let g:miniBufExplMapWindowNavArrows = 1 
-" let g:miniBufExplMapCTabSwitchBufs = 1 
-" let g:miniBufExplModSelTarget = 1 
+" let g:miniBufExplMapWindowNavVim = 1
+" let g:miniBufExplMapWindowNavArrows = 1
+" let g:miniBufExplMapCTabSwitchBufs = 1
+" let g:miniBufExplModSelTarget = 1
 
 " Saner handling of large files (via LargeFiles).
 " Files larger than 10MB are large
@@ -278,7 +290,7 @@ set linebreak
 "nmap tW :set linebreak!<CR>:echo "Break words: " . strpart("OffOn", 3* !&linebreak,3)<CR>
 
 nmap <silent> <S-F3> :call ToggleFoldColumn()<CR>
-function ToggleFoldColumn()
+function! ToggleFoldColumn()
 	if &foldcolumn==0
 		set foldcolumn=1
 	else
@@ -288,10 +300,10 @@ function ToggleFoldColumn()
 endfunction
 
 "nmap <silent> <F5> :make
-function MakeCommand(command)
+function! MakeCommand(command)
 	nmap <silent> <F5> a:command<CR><CR>
 endfunction
-command -nargs=1 MakeCommand call MakeCommand(<args>)
+command! -nargs=1 MakeCommand call MakeCommand(<args>)
 nmap <silent> <F5> :!tmux send-keys -t tests "failsucc.sh django-admin.py test articles" Enter<CR><CR>
 nmap <silent> <S-F5> :!tmux send-keys -t tests "failsucc.sh django-admin.py test" Enter<CR><CR>
 
@@ -301,7 +313,7 @@ set foldmethod=marker
 
 " Toggle Make and SCons
 "nmap <silent> t<F5> :call ToggleScons()<CR>
-"function ToggleScons()
+"function! ToggleScons()
 "	if &makeprg=='make'
 "		set makeprg=scons
 "		echo "SCons set as builder"
@@ -346,7 +358,7 @@ if has("spell")
   " they were using white on white
   highlight PmenuSel ctermfg=black ctermbg=lightgray
   " limit it to just the top 10 items
-  set sps=best,10                    
+  set sps=best,10
 endif
 
 function! Spellang()
@@ -392,7 +404,7 @@ set cryptmethod=blowfish
 
 set laststatus=2
 
-function s:create_statusbar(variable,insertcolors) "{{{
+function! s:create_statusbar(variable,insertcolors) "{{{
 	if a:insertcolors
 		let filenamecolor='%1*'
 		let warningcolor='%2*'
@@ -428,32 +440,32 @@ endfunction "}}}
 "au WinLeave * let &l:statusline=g:NC_statusline
 "set rulerformat=
 
-function ClutterTurnOn()
+function! ClutterTurnOn()
 	set ruler
 	set laststatus=2
 endfunction
-function ClutterTurnOff()
+function! ClutterTurnOff()
 	set noruler
 	set laststatus=1
 endfunction
-command ClutterOn  call ClutterTurnOn()
-command ClutterOff call ClutterTurnOff()
+command! ClutterOn  call ClutterTurnOn()
+command! ClutterOff call ClutterTurnOff()
 
-function BackupTurnOn()
+function! BackupTurnOn()
 	set backup
 	set writebackup
 	set swapfile
 endfunction
-function BackupTurnOff()
+function! BackupTurnOff()
 	set nobackup
 	set nowritebackup
 	set noswapfile
 endfunction
-command BackupOn  call BackupTurnOn()
-command BackupOff call BackupTurnOff()
+command! BackupOn  call BackupTurnOn()
+command! BackupOff call BackupTurnOff()
 
-function Marked()
+function! Marked()
 	silent! !open -a Marked "%"
 	echo "Opened file i Marked.app"
 endfunction
-command Marked call Marked()
+command! Marked call Marked()
