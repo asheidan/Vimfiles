@@ -222,24 +222,26 @@ let g:vo_modules_load = ':clock'
 " RagTag
 let g:ragtag_global_maps = 1
 
-" Command-T
-"nmap <silent> <Leader>P :CommandTFlush<CR>
-"nmap <silent> <Leader>p :CommandT<CR>
-
-" Ctrl-P
-"unlet g:ctrlp_custom_ignore
-set wildignore+=*~
-let g:ctrlp_arg_map = 1
-let g:ctrlp_custom_ignore = {
-	\ 'file': '\v\.(o|pyc)$',
-	\ 'dir': 'virtualenv\|\.(git\|svn\|hg)$',
-	\ }
-let g:ctrlp_reuse_window = 'BufEx'
-" Dumb workdir
-let g:ctrlp_working_path_mode = 0
-nmap <silent> <Leader>p :CtrlP<CR>
-nmap <silent> <Leader>P :CtrlPBuffer<CR>
-nmap <silent> <Leader>o :CtrlPTag<CR>
+" Unite (trying to replace other fuzzyfinders
+"let g:unite_enable_start_insert = 1
+let g:unite_split_rule = "botright"
+call unite#custom#source('file_rec', 'filters',
+		\ ['converter_relative_word', 'matcher_default',
+		\  'sorter_default', 'converter_relative_abbr'])
+" Unite prefix
+nnoremap [unite] <Nop>
+nmap <leader>u [unite]
+nnoremap <silent> [unite]u :Unite -direction=below file_rec<CR>
+nnoremap <silent> [unite]b :Unite -direction=below buffer<CR>
+nnoremap <silent> [unite]t :Unite -direction=below tag<CR>
+nnoremap <silent> [unite]f :Unite -direction=below file<CR>
+nnoremap <silent> [unite]F :UniteWithBufferDir -direction=below file<CR>
+nnoremap  [unite]s  :<C-u>Unite -direction=below source<CR>
+nnoremap <silent> [unite]r  :<C-u>Unite -direction=below
+		\ -buffer-name=register register<CR>
+nnoremap <silent> [unite]o  :<C-u>Unite -direction=below outline<CR>
+nnoremap <silent> [unite]c :Unite -direction=below command<CR>
+command! Colorscheme Unite colorscheme
 
 " NarrowRegion
 let g:nrrw_rgn_protect = 'n'
