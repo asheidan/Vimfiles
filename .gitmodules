@@ -94,3 +94,6 @@
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/todo.txt"]
+	path = vim/bundle/todo.txt
+	url = https://github.com/freitass/todo.txt-vim.git
