@@ -31,9 +31,6 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
-" Fix for using fish-beta as shell
-set shell=/bin/bash
-
 let mapleader = ","
 let maplocalleader = ";"
 
