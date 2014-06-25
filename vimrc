@@ -278,6 +278,10 @@ let Tlist_Use_Right_Window=1
 nmap <C-j> <C-]>
 nmap g<C-j> g]
 nmap <C-k> <C-t>
+cmap <C-j> <Down>
+cmap <C-k> <Up>
+
+nnoremap <silent> <C-W>z :pclose<Bar>:cclose<Bar>:lclose<CR>
 
 " map <F2> to toggle NERDTree window
 nmap <silent> <S-F2> :NERDTreeFind<CR>
@@ -390,6 +394,8 @@ endfunction
 iab <expr> xds strftime("%Y-%m-%d")
 iab <expr> xts strftime("%H.%M.%s")
 iab <expr> xdts strftime("%Y-%m-%d %H.%M.%S")
+iab <expr> _xdts strftime("%Y%m%d%H%M%S")
+cab <expr> xdts strftime("%Y%m%d%H%M%S")
 
 " Stronger encryption
 set cryptmethod=blowfish

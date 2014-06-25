@@ -79,3 +79,15 @@
 [submodule "vim/bundle/rfc-syntax"]
 	path = vim/bundle/rfc-syntax
 	url = git://github.com/vim-scripts/rfc-syntax.git
+[submodule "vim/bundle/unite.vim"]
+	path = vim/bundle/unite.vim
+	url = https://github.com/Shougo/unite.vim.git
+[submodule "vim/bundle/unite-tag"]
+	path = vim/bundle/unite-tag
+	url = https://github.com/tsukkee/unite-tag.git
+[submodule "vim/bundle/unite-colorscheme"]
+	path = vim/bundle/unite-colorscheme
+	url = https://github.com/ujihisa/unite-colorscheme.git
+[submodule "vim/bundle/unite-outline"]
+	path = vim/bundle/unite-outline
+	url = https://github.com/Shougo/unite-outline.git
