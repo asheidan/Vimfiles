@@ -91,3 +91,6 @@
 [submodule "vim/bundle/unite-outline"]
 	path = vim/bundle/unite-outline
 	url = https://github.com/Shougo/unite-outline.git
+[submodule "vim/bundle/syntastic"]
+	path = vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
