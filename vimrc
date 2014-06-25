@@ -194,14 +194,26 @@ TabSize 3
 let g:LargeFile = 10
 
 " Fugitive (convenience bindings)
-nmap <silent> <leader>gs :Gstatus<CR>
-nmap <silent> <leader>gd :Gdiff<CR>
+nnoremap [git] <Nop>
+nmap <leader>g [git]
+nmap <silent> [git]s :Gstatus<CR>
+nmap <silent> [git]d :Gdiff<CR>
+function! Gdifflist(args)
+	let explanation = { 'M': 'Modified', 'A': 'Added', 'D': 'Deleted'}
+	let qflist = []
+	for line in split(system("git diff --name-status " . shellescape(a:args)), '\n')
+		let data = split(line, '\t')
+		call add(qflist, {'filename': join(data[1:], '\t'), 'type': data[0][0], 'text':explanation[data[0][0]]})
+	endfor
+	call setqflist(qflist)
+endfunction
+command! -nargs=* Gdifflist call Gdifflist("<args>")
 
 " Gitv, the love child of fugitive
 let g:Gitv_OpenHorizontal = 'auto'
 
-nmap <silent> <leader>gv :Gitv<CR>
-nmap <silent> <leader>gV :Gitv --all<CR>
+nmap <silent> [git]v :Gitv<CR>
+nmap <silent> [git]V :Gitv --all<CR>
 
 " Vimoutliner
 let g:votl_modules_load = ''
@@ -233,6 +245,12 @@ nmap <silent> <Leader>o :CtrlPTag<CR>
 let g:nrrw_rgn_protect = 'n'
 
 nmap <silent> <leader>t :noautocmd vimgrep /TODO/j **<CR>:cw<CR>
+
+" Copy current filename to "+
+nmap <silent> <leader>f :let @+=expand("%")<CR>
+nmap <silent> <leader>F :let @+=expand("%:p")<CR>
+nmap <silent> <leader>l :let @+=expand("%").":".line(".")<CR>
+nmap <silent> <leader>L :let @+=expand("%:p").":".line(".")<CR>
 
 " Write before :make
 set autowrite
