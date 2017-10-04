@@ -17,6 +17,7 @@ endif
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+nnoremap Q <nop>
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -205,6 +206,7 @@ function! Gdifflist(args)
 	call setqflist(qflist)
 endfunction
 command! -nargs=* Gdifflist call Gdifflist("<args>")
+command! -nargs=* Gdiffnext wincmd o|cnext|Gdiff <args>
 
 " Gitv, the love child of fugitive
 let g:Gitv_OpenHorizontal = 'auto'
@@ -227,23 +229,35 @@ call unite#custom#source('file_rec', 'filters',
 		\  'sorter_default', 'converter_relative_abbr'])
 " Unite prefix
 nnoremap [unite] <Nop>
-nmap <leader>u [unite]
-nnoremap <silent> [unite]u :Unite -direction=below file_rec<CR>
-nnoremap <silent> [unite]b :Unite -direction=below buffer<CR>
-nnoremap <silent> [unite]t :Unite -direction=below tag<CR>
-nnoremap <silent> [unite]f :Unite -direction=below file<CR>
-nnoremap <silent> [unite]F :UniteWithBufferDir -direction=below file<CR>
-nnoremap  [unite]s  :<C-u>Unite -direction=below source<CR>
-nnoremap <silent> [unite]r  :<C-u>Unite -direction=below
+nmap <leader><space> [unite]
+nnoremap <silent> [unite]n :Unite file_rec<CR>
+nnoremap <silent> [unite]b :Unite buffer<CR>
+nnoremap <silent> [unite]t :Unite tag<CR>
+nnoremap <silent> [unite]f :Unite file<CR>
+nnoremap <silent> [unite]F :UniteWithBufferDir file<CR>
+nnoremap  [unite]s  :<C-u>Unite source<CR>
+nnoremap <silent> [unite]r  :<C-u>Unite
 		\ -buffer-name=register register<CR>
-nnoremap <silent> [unite]o  :<C-u>Unite -direction=below outline<CR>
-nnoremap <silent> [unite]c :Unite -direction=below command<CR>
+nnoremap <silent> [unite]o  :<C-u>Unite outline<CR>
+nnoremap <silent> [unite]c :Unite command<CR>
+nnoremap <silent> [unite]r :Unite rake<CR>
+nnoremap <silent> [unite]m :Unite menu<CR>
+nnoremap <silent> [unite]g :Unite menu:git<CR>
 command! Colorscheme Unite colorscheme
 
+" Menu for unite
+let g:unite_source_menu_menus = {}
+let g:unite_source_menu_menus.git = {
+	\ 'description': 'Operations regarding git',
+	\}
+let g:unite_source_menu_menus.git.command_candidates = [
+	\['git status		(Fugitive)					,gs',
+	  \'Gstatus'],
+\]
 " NarrowRegion
 let g:nrrw_rgn_protect = 'n'
 
-nmap <silent> <leader>t :noautocmd vimgrep /TODO/j **<CR>:cw<CR>
+nmap <silent> <leader>t :noautocmd vimgrep /\<TODO\>\C/j **<CR>:cw<CR>
 
 " Copy current filename to "+
 nmap <silent> <leader>f :let @+=expand("%")<CR>
@@ -355,9 +369,9 @@ set ignorecase
 set smartcase
 
 " Completing
-set completeopt=longest,menuone
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+"set completeopt=longest,menuone
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"inoremap <expr> <C-n> pumvisible() ? '<C-n>' : '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 " Background buffers
 set hidden
