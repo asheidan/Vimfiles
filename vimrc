@@ -409,7 +409,7 @@ iab <expr> _xdts strftime("%Y%m%d%H%M%S")
 cab <expr> xdts strftime("%Y%m%d%H%M%S")
 
 " Stronger encryption
-set cryptmethod=blowfish
+set cryptmethod=blowfish2
 
 set laststatus=2
 
