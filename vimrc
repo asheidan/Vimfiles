@@ -34,6 +34,9 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
+Plug 'benwainwright/fzf-project'
+let g:fzfSwitchProjectProjects = [ '~/.vim' ]
+
 " fugitive
 Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
@@ -80,7 +83,7 @@ Plug 'jacoborus/tender.vim'
 " One possible alternative would be Plug 'itchyny/lightline.vim'
 Plug 'itchyny/lightline.vim'
 let g:lightline = {}
-let g:lightline.colorscheme = 'one'
+let g:lightline.colorscheme = 'solarized'
 let g:lightline.active = {
       \    'left': [ [ 'mode', 'paste' ],
       \              [ 'readonly', 'relativepath', 'modified' ] ] }
@@ -112,7 +115,6 @@ call plug#end()
 
 let mapleader = ' '
 
-" Config for powerline or whatever
 " This is handled by the bar now
 set noshowmode
 
@@ -120,11 +122,13 @@ set showcmd
 
 nmap <silent> <leader>ig :IndentGuidesToggle<CR>
 
-nnoremap [fzf] <Nop>
-nmap <silent> <leader><space> [fzf]
-nmap <silent> [fzf]b :Buffers<CR>
-nmap <silent> [fzf]f :Files<CR>
-nmap <silent> [fzf]t :Tags<CR>
+"nnoremap [fzf] <Nop>
+"nmap <silent> <leader><space> [fzf]
+nmap <silent> <leader><space> :Files<CR>
+"nmap <silent> [fzf]b :Buffers<CR>
+nmap <silent> <leader>< :Buffers<CR>
+"nmap <silent> [fzf]f :Files<CR>
+"nmap <silent> [fzf]t :Tags<CR>
 
 nnoremap [git] <Nop>
 nmap <leader>g [git]
@@ -132,6 +136,10 @@ nmap <silent> [git]s :Gstatus<CR>
 nmap <silent> [git]b :Gblame<CR>
 nmap <silent> [git]v :Gitv<CR>
 nmap <silent> [git]V :Gitv --all<CR>
+
+nnoremap [project] <Nop>
+nmap <leader>p [project]
+nmap <silent> [project]p :FzfSwitchProject<CR>
 
 " Linenumbers
 nmap <silent> <F3> :set nu!<CR>:echo "Line numbers: " . strpart("OffOn", 3* &nu,3)<CR>
@@ -143,4 +151,4 @@ set cursorline
 
 set bg=light
 
-colorscheme one
+colorscheme solarized
