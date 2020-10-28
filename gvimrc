@@ -15,4 +15,5 @@ set guioptions-=l
 set guioptions-=b
 set guioptions-=h
 
-set guifont=ProFontIIxNerdFontComplete-:h9
+" Nicer font
+set guifont=ProFontWindows\ 9

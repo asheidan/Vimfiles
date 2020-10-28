@@ -12,7 +12,7 @@ set linebreak
 set ruler
 
 " Make vim look like vim
-"set laststatus=2
+set laststatus=2
 "
 " Sane searches
 set ignorecase
@@ -30,43 +30,93 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-surround'
 
 " fzf
-Plug '/usr/local/opt/fzf', { 'do': { -> fzf#install() } }
+"Plug '/usr/share/vim/vimfiles/plugin/fzf.vim'
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 " fugitive
 Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
 
+" Git gutter
+Plug 'airblade/vim-gitgutter'
+
+" Tabular
+Plug 'godlygeek/tabular'
+
 " Speeddating (handle dates as if they were numbers)
 Plug 'tpope/vim-speeddating'
 
 " Nerd tree sidebar
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+nmap <silent> <F2> :NERDTreeToggle<CR>
+nmap <silent> <S-F2> :NERDTreeFind<CR>
+let NERDChristmasTree = 1
+let NERDTreeSortDirs = 1
+let NERDTreeIgnore = ['\~$','\.o$','\.elf$','\.class$','\.aux$','\.fls$','\.out$','\.\d*\(gf\|pk\)$','\.tfm$','\.tmproj$','\.pyc$','^__pycache__$']
 
 " Indent guides
 Plug 'nathanaelkane/vim-indent-guides'
 
 " Tagbar (outline for source-files)
 Plug 'majutsushi/tagbar'
+nmap <silent> <leader>tb :TagbarToggle<CR>
 
 " Colorschemes
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
+Plug 'rakr/vim-one'
+Plug 'sonph/onehalf', {'rtp': 'vim'}
+Plug 'romgrk/doom-one.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'tomasr/molokai'
+Plug 'jacoborus/tender.vim'
 "autocmd! User togglebg.vim colorscheme solarized
 
 " Powerline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 " One possible alternative would be Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
+let g:lightline = {}
+let g:lightline.colorscheme = 'one'
+let g:lightline.active = {
+      \    'left': [ [ 'mode', 'paste' ],
+      \              [ 'readonly', 'relativepath', 'modified' ] ] }
+let g:lightline.inactive = {
+      \    'left': [ [ 'relativepath' ] ] }
 
 " Editorconfig
 Plug 'editorconfig/editorconfig-vim'
 
-" Org-mode (Still too buggy)
-"Plug 'https://github.com/jceb/vim-orgmode.git'
+" Org-mode (Still too buggy) (but let's try it again)
+Plug 'https://github.com/jceb/vim-orgmode.git'
+
+" Inline linting and LSP-client
+Plug 'dense-analysis/ale'
+let g:ale_lint_on_text_changed = 'never'
+
+" https://github.com/maximbaz/lightline-ale
+
+"Plug 'liuchengxu/vim-which-key'
+
+" TODO: Easily turn off hlsearch
+" https://stackoverflow.com/a/26504944/106746
+
+" Syntax plugins
+" Terraform
+Plug 'hashivim/vim-terraform'
 
 call plug#end()
+
+let mapleader = ' '
+
+" Config for powerline or whatever
+" This is handled by the bar now
+set noshowmode
+
+set showcmd
 
 nmap <silent> <leader>ig :IndentGuidesToggle<CR>
 
@@ -83,15 +133,6 @@ nmap <silent> [git]b :Gblame<CR>
 nmap <silent> [git]v :Gitv<CR>
 nmap <silent> [git]V :Gitv --all<CR>
 
-" Config for Nerd-tree
-nmap <silent> <F2> :NERDTreeToggle<CR>
-let NERDChristmasTree = 1
-let NERDTreeSortDirs = 1
-let NERDTreeIgnore = ['\~$','\.o$','\.elf$','\.class$','\.aux$','\.fls$','\.out$','\.\d*\(gf\|pk\)$','\.tfm$','\.tmproj$','\.pyc$','^__pycache__$']
-
-" Config for Tagbar
-nmap <silent> <leader>tb :TagbarToggle<CR>
-
 " Linenumbers
 nmap <silent> <F3> :set nu!<CR>:echo "Line numbers: " . strpart("OffOn", 3* &nu,3)<CR>
 
@@ -100,4 +141,6 @@ set grepprg=rg\ --vimgrep
 
 set cursorline
 
-colorscheme Tomorrow
+set bg=light
+
+colorscheme one
