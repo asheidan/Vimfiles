@@ -83,11 +83,16 @@ Plug 'jacoborus/tender.vim'
 "Plug 'vim-airline/vim-airline-themes'
 " One possible alternative would be Plug 'itchyny/lightline.vim'
 Plug 'itchyny/lightline.vim'
+function! LightLineProjectName()
+	return fnamemodify(getcwd(), ':~:t')
+endfunction
 let g:lightline = {}
-let g:lightline.colorscheme = 'solarized'
+let g:lightline.colorscheme = 'powerline'
+let g:lightline.component_function = {
+      \    'projectname': 'LightLineProjectName' }
 let g:lightline.active = {
       \    'left': [ [ 'mode', 'paste' ],
-      \              [ 'readonly', 'relativepath', 'modified' ] ] }
+      \              [ 'projectname', 'readonly', 'relativepath', 'modified' ] ] }
 let g:lightline.inactive = {
       \    'left': [ [ 'relativepath' ] ] }
 
@@ -150,6 +155,6 @@ set grepprg=rg\ --vimgrep
 
 set cursorline
 
-set bg=light
+set bg=dark
 
-colorscheme solarized
+colorscheme gruvbox
