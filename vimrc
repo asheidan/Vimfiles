@@ -68,16 +68,20 @@ Plug 'majutsushi/tagbar'
 nmap <silent> <leader>tb :TagbarToggle<CR>
 
 " Colorschemes
-Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'jacoborus/tender.vim'
 Plug 'morhetz/gruvbox'
 Plug 'rakr/vim-one'
-Plug 'sonph/onehalf', {'rtp': 'vim'}
 Plug 'romgrk/doom-one.vim'
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'sonph/onehalf', {'rtp': 'vim'}
 Plug 'tomasr/molokai'
-Plug 'jacoborus/tender.vim'
 "autocmd! User togglebg.vim colorscheme solarized
+
+" Buggy themes
+"Plug 'ayu-theme/ayu-vim' " This is not a good vim-citizen yet
+"let ayucolor = 'light'
 
 " Powerline
 "Plug 'vim-airline/vim-airline'
@@ -88,12 +92,29 @@ function! LightLineProjectName()
 	return fnamemodify(getcwd(), ':~:t')
 endfunction
 let g:lightline = {}
-let g:lightline.colorscheme = 'powerline'
+let g:lightline.colorscheme = 'one'
+let g:lightline.component_expand = {
+      \     'linter_checking': 'lightline#ale#checking',
+      \     'linter_infos': 'lightline#ale#infos',
+      \     'linter_warnings': 'lightline#ale#warnings',
+      \     'linter_errors': 'lightline#ale#errors',
+      \     'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'right',
+      \     'linter_infos': 'right',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'right',
+      \ }
 let g:lightline.component_function = {
       \    'projectname': 'LightLineProjectName' }
 let g:lightline.active = {
       \    'left': [ [ 'mode', 'paste' ],
-      \              [ 'projectname', 'readonly', 'relativepath', 'modified' ] ] }
+      \              [ 'projectname', 'readonly', 'relativepath', 'modified' ] ],
+      \    'right': [ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype'],
+      \               [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]],
+      \ }
 let g:lightline.inactive = {
       \    'left': [ [ 'relativepath' ] ] }
 
@@ -106,8 +127,9 @@ Plug 'https://github.com/jceb/vim-orgmode.git'
 " Inline linting and LSP-client
 Plug 'dense-analysis/ale'
 let g:ale_lint_on_text_changed = 'never'
-
+let g:ale_completion_enabled = 1
 " https://github.com/maximbaz/lightline-ale
+Plug 'maximbaz/lightline-ale'
 
 "Plug 'liuchengxu/vim-which-key'
 
@@ -156,6 +178,6 @@ set grepprg=rg\ --vimgrep
 
 set cursorline
 
-set bg=dark
+set bg=light
 
-colorscheme gruvbox
+colorscheme onehalflight
