@@ -37,6 +37,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'benwainwright/fzf-project'
 let g:fzfSwitchProjectProjects = [ '~/.vim' ]
+let g:fzfSwitchProjectWorkspaces = [ '~/Documents/Codemill/Adlede', '~/Documents/Projects' ]
 
 " fugitive
 Plug 'tpope/vim-fugitive'
