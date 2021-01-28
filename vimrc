@@ -67,6 +67,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Tagbar (outline for source-files)
 Plug 'majutsushi/tagbar'
 nmap <silent> <leader>tb :TagbarToggle<CR>
+nmap <silent> <F4> :TagbarToggle<CR>
 
 " Colorschemes
 Plug 'NLKNguyen/papercolor-theme'
