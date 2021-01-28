@@ -33,11 +33,12 @@ Plug 'tpope/vim-surround'
 "Plug '/usr/share/vim/vimfiles/plugin/fzf.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-" TODO: change options for fzf to remove rounded border
+let g:fzf_layout = { 'down': '40%' }
 
 Plug 'benwainwright/fzf-project'
 let g:fzfSwitchProjectProjects = [ '~/.vim' ]
 let g:fzfSwitchProjectWorkspaces = [ '~/Documents/Codemill/Adlede', '~/Documents/Projects' ]
+let g:fzfSwitchProjectAlwaysChooseFile = 0
 
 " fugitive
 Plug 'tpope/vim-fugitive'
