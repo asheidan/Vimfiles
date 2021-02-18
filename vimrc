@@ -29,10 +29,14 @@ call plug#begin('~/.vim/plugged')
 " surround
 Plug 'tpope/vim-surround'
 
+" commantary
+Plug 'tpope/vim-commentary'
+
 " fzf
 "Plug '/usr/share/vim/vimfiles/plugin/fzf.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+" https://github.com/junegunn/fzf/blob/master/README-VIM.md
 let g:fzf_layout = { 'down': '40%' }
 
 Plug 'benwainwright/fzf-project'
