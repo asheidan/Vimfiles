@@ -171,9 +171,11 @@ nmap <silent> <leader>ig :IndentGuidesToggle<CR>
 "nmap <silent> <leader><space> [fzf]
 nmap <silent> <leader><space> :Files<CR>
 "nmap <silent> [fzf]b :Buffers<CR>
-nmap <silent> <leader>< :Buffers<CR>
+nmap <silent> <leader>bb :Buffers<CR>
 "nmap <silent> [fzf]f :Files<CR>
 "nmap <silent> [fzf]t :Tags<CR>
+nmap <silent> <leader>cg :BTags<CR>
+nmap <silent> <leader>cG :Tags<CR>
 
 nnoremap [git] <Nop>
 nmap <leader>g [git]
