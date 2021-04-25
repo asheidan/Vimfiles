@@ -156,6 +156,8 @@ Plug 'maximbaz/lightline-ale'
 " Terraform
 Plug 'hashivim/vim-terraform'
 
+Plug 'lepture/vim-jinja'
+
 call plug#end()
 
 let mapleader = ' '
