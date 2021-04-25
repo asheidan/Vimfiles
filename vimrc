@@ -21,6 +21,9 @@ set smartcase
 " Set terminal title if in terminal
 set title
 
+" Faster macros
+set lazyredraw
+
 let mapleader = ","
 
 " vim-plug
@@ -56,6 +59,13 @@ Plug 'godlygeek/tabular'
 
 " Speeddating (handle dates as if they were numbers)
 Plug 'tpope/vim-speeddating'
+
+" Highligt region yanked
+Plug 'machakann/vim-highlightedyank'
+let g:highlightedyank_highlight_duration = 200
+if !exists('##TextYankPost')
+  map y <Plug>(highlightedyank)
+endif
 
 " Nerd tree sidebar
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
